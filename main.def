@@ -1,0 +1,3 @@
+LIBRARY "WebSocketEcho"  
+EXPORTS  
+    RegisterModule
