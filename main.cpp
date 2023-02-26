@@ -17,6 +17,7 @@
 
 // The actual WebSocket server
 #include "iiswebsocket.h"
+using namespace IISWebSocketServer;
 
 // Set this to false to stop debugging
 static const bool DEBUG_WEB_SOCKET_SERVER = false;
@@ -56,7 +57,7 @@ public:
 	BOOL Out(const CHAR* string)
 	{
 		DWORD dwBytesWritten;
-		return WriteFile(this->hDebugFile, string, strlen(string), &dwBytesWritten, NULL);
+		return WriteFile(this->hDebugFile, string, (DWORD)strlen(string), &dwBytesWritten, NULL);
 	}
 	BOOL Close()
 	{
@@ -369,10 +370,10 @@ DWORD WINAPI RunWork(void* parameter)
 				pClientConnection->debugger.Out("User requested server connection close\n");
 
 				// Close data
-				IIS_WEB_SOCKET_SERVER_CLOSE_DATA closeData(IIS_WEB_SOCKET_CLOSE_STATUS::IIS_WEB_SOCKET_SUCCESS_CLOSE_STATUS, "User requested");
+				IIS_WEB_SOCKET_CLOSE_DATA closeData(IIS_WEB_SOCKET_CLOSE_STATUS::IIS_WEB_SOCKET_SUCCESS_CLOSE_STATUS, "User requested");
 
 				// Send the CLOSE frame with the reason
-				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_CLOSE_BUFFER_TYPE, &closeData, closeData.length());
+				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_CLOSE_BUFFER_TYPE, &closeData, (DWORD)closeData.length());
 				if (errorCode != S_OK)
 				{
 					if (DEBUG_WEB_SOCKET_SERVER) {
@@ -383,7 +384,7 @@ DWORD WINAPI RunWork(void* parameter)
 				}
 
 				// Client will send a CLOSE frame back
-				errorCode = pWebSocketServer->Receive(&closeData, sizeof(IIS_WEB_SOCKET_SERVER_CLOSE_DATA), &dwBytesReceived, &bufferType);
+				errorCode = pWebSocketServer->Receive(&closeData, sizeof(IIS_WEB_SOCKET_CLOSE_DATA), &dwBytesReceived, &bufferType);
 				if (errorCode != S_OK)
 				{
 					if (DEBUG_WEB_SOCKET_SERVER) {
@@ -411,7 +412,7 @@ DWORD WINAPI RunWork(void* parameter)
 				sprintf_s(pOutBuffer, 256, "%zu", get_client_count());
 
 				// Send the client count message
-				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE, pOutBuffer, strlen(pOutBuffer));
+				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE, pOutBuffer, (DWORD)strlen(pOutBuffer));
 				if (errorCode != S_OK)
 				{
 					if (DEBUG_WEB_SOCKET_SERVER) {
@@ -445,7 +446,7 @@ DWORD WINAPI RunWork(void* parameter)
 				strcat_s(pOutBuffer, EchoBufferSize, pInBuffer);
 
 				// Send the echo message
-				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE, pOutBuffer, strlen(pOutBuffer));
+				errorCode = pWebSocketServer->Send(IIS_WEB_SOCKET_BUFFER_TYPE::IIS_WEB_SOCKET_UTF8_MESSAGE_BUFFER_TYPE, pOutBuffer, (DWORD)strlen(pOutBuffer));
 				if (errorCode != S_OK)
 				{
 					if (DEBUG_WEB_SOCKET_SERVER) {

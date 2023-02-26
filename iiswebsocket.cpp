@@ -11,6 +11,7 @@
 //
 
 #include "iiswebsocket.h"
+using namespace IISWebSocketServer;
 
 // The headers a client must send to create a WebSocket connection
 static CHAR* requiredHeaders[] = { "Connection", "Upgrade" };
@@ -31,7 +32,7 @@ void WebSocketGenerateMaskingKey(CHAR pMaskingKey[4])
 	pMaskingKey[3] = (key >> 24) & 0xFF;
 }
 
-void PrintLastError(DWORD errorCode, CHAR* des, size_t desLen, CHAR* action, bool append)
+void IISWebSocketServer::PrintLastError(DWORD errorCode, CHAR* des, size_t desLen, CHAR* action, bool append)
 {
 	size_t offset;
 
@@ -278,7 +279,7 @@ HRESULT WebSocketServer::PerformHandshake(IHttpContext* pHttpContext)
 
 		// Add the header to our array
 		this->pRequestHeaders[i].pcName = requiredHeaders[i];
-		this->pRequestHeaders[i].ulNameLength = strlen(requiredHeaders[i]);
+		this->pRequestHeaders[i].ulNameLength = (ULONG)strlen(requiredHeaders[i]);
 		this->pRequestHeaders[i].pcValue = (PCHAR)pHeaderValuePointer;
 		this->pRequestHeaders[i].ulValueLength = headerValueLength;
 	}
@@ -297,7 +298,7 @@ HRESULT WebSocketServer::PerformHandshake(IHttpContext* pHttpContext)
 
 		// Add the header to our array
 		this->pRequestHeaders[this->RequestHeadersCount].pcName = optionalHeaders[i];
-		this->pRequestHeaders[this->RequestHeadersCount].ulNameLength = strlen(optionalHeaders[i]);
+		this->pRequestHeaders[this->RequestHeadersCount].ulNameLength = (ULONG)strlen(optionalHeaders[i]);
 		this->pRequestHeaders[this->RequestHeadersCount].pcValue = (PCHAR)pHeaderValuePointer;
 		this->pRequestHeaders[this->RequestHeadersCount].ulValueLength = headerValueLength;
 
