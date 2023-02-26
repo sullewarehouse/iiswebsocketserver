@@ -17,10 +17,10 @@ Check **`main.cpp`** for a detailed example that echos messages back to the clie
 Members:
 - Functions
   - [Initialize](docs/WebSocketServer/Initialize.md)
-  - [Initialize](docs/WebSocketServer/PerformHandshake.md)
+  - [PerformHandshake](docs/WebSocketServer/PerformHandshake.md)
   - [Receive](docs/WebSocketServer/Receive.md)
   - [Send](docs/WebSocketServer/Send.md)
-  - [Close](docs/WebSocketServer/IsConnected.md)
+  - [IsConnected](docs/WebSocketServer/IsConnected.md)
   - [Free](docs/WebSocketServer/Free.md)
 - Variables
   - [WebSocketFrame](docs/WebSocketServer/WebSocketFrame.md)
