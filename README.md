@@ -36,9 +36,10 @@ Members:
    - Click on the name of your server (not a site) in the left Connections panel
    - Goto **Modules**, in the right **Actions** panel, select **Configure Native Modules...**
    - In the pop-up window click **Register...** (this button will not appear if you clicked on a site)
-   - Enter the name you want associated with the module, and enter/select the path of your module file
-   - Click OK
-   - Your module will now be in the list of modules to enable, ensure your module is selected and click OK
+   - Enter the name you want associated with the module
+   - Enter/Select the path of your module (.dll) file, click OK
+   - Your module will now be in the list of modules to enable
+   - Ensure your module is selected and click OK
 2. Setup the Application Pool
    - Goto **Application Pools** in the left Connections panel
    - Click on **Add Application Pool...** in the right Actions panel
@@ -49,6 +50,7 @@ Members:
    - Select your application and click on **Advanced Settings...** in the right Actions panel
    - If Your module is 32-Bit then select **true** under **Enable 32-Bit Applications**
    - To give your module admin rights, select **LocalSystem** under **Identity**
+   - Click OK when you are done setting **Advanced Settings**
 3. Add the Application to your site
    - Right click on the site you wish to add the module to, select **Add Application...**
    - Under **Alias** enter the path you want to use for the URL
