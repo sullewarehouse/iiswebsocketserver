@@ -1,10 +1,29 @@
 # iiswebsocketserver
 Windows IIS native WebSocket server module.
 
-You do not need to compile anything to use this WebSocket server in your IIS module, just include **`iiswebsocket.cpp`** and **`iiswebsocket.h`** in your IIS module.
-Everything is contained in the **`IISWebSocketServer`** namespace.
+You do not need to compile anything to use this WebSocket server in your IIS module, just include **`iiswebsocket.cpp`** and **`iiswebsocket.h`** in your IIS module. Everything is contained in the **`IISWebSocketServer`** namespace.
 
-Check **`main.cpp`** for a detailed example that echos messages back to the client.
+See **`example.cpp`** for a detailed example that echos messages back to the client.
+
+LICENSE TERMS
+=============
+```
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+  
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+  
+  (1) If any part of the source code for this software is distributed, then this
+      README file must be included, with this copyright and no-warranty notice
+      unaltered; and any additions, deletions, or changes to the original files
+      must be clearly indicated in accompanying documentation.
+  (2) Permission for use of this software is granted only if the user accepts
+      full responsibility for any undesirable consequences; the authors accept
+      NO LIABILITY for damages of any kind.
+```
 
 ## Functions
 
@@ -58,6 +77,7 @@ Members:
    - Select the folder your module is in
    - Click OK
 
-## WebSocket resources
+## WebSocket Resources
 
+- [WebSocket Specification (RFC 6455)](https://www.rfc-editor.org/rfc/rfc6455)
 - [WebSocket client using WinHTTP functions](https://github.com/sullewarehouse/WinHttpWebSocketClient)
